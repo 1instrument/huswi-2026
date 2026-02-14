@@ -1,0 +1,301 @@
+@import "tailwindcss";
+
+:root {
+  --background: #1a0010;
+  --foreground: #FFF0F5;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-pixel: var(--font-pixel);
+
+  /* Valentine's Palette */
+  --color-retro-pink: #FF1493;
+  --color-retro-purple: #8A2BE2;
+  --color-retro-cyan: #FF69B4;
+  --color-retro-yellow: #FFD700;
+  --color-retro-cream: #FFF0F5;
+  --color-retro-dark: #1a0010;
+  --color-valentine-red: #FF0044;
+  --color-valentine-rose: #FF6B81;
+  --color-valentine-blush: #FFB8C6;
+  --color-valentine-deepred: #8B0000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1a0010;
+    --foreground: #FFF0F5;
+  }
+}
+
+/* ========== CUSTOM HEART CURSOR ========== */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23FF1493' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") 12 12, auto;
+}
+
+a,
+button,
+[role="button"] {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 24 24'%3E%3Cpath fill='%23FFD700' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") 12 12, pointer;
+}
+
+/* ========== PINK SCROLLBAR ========== */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a0010;
+  border-left: 1px solid #FF149330;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #FF1493, #FF69B4, #FF1493);
+  border-radius: 6px;
+  border: 2px solid #1a0010;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #FF69B4, #FFD700, #FF69B4);
+}
+
+/* ========== PINK TEXT SELECTION ========== */
+::selection {
+  background: #FF149380;
+  color: #FFF0F5;
+}
+
+/* ========== HEART DIVIDER CSS ========== */
+.heart-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 2rem 0;
+  opacity: 0.6;
+}
+
+.heart-divider::before,
+.heart-divider::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #FF1493, transparent);
+}
+
+/* ========== HEARTBEAT HOVER ========== */
+@keyframes heartbeat {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(1.05);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  75% {
+    transform: scale(1.03);
+  }
+}
+
+.heartbeat-hover:hover {
+  animation: heartbeat 0.8s ease-in-out infinite;
+}
+
+/* ==========================================================
+   SCENE → STORY LAYOUT
+   ========================================================== */
+
+/* --- Biome Section Wrapper --- */
+.biome-section {
+  width: 100%;
+  background: #1a0010;
+}
+
+/* --- Scene Zone (pixel art) --- */
+.scene-zone {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.scene-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* --- Title Banner (overlaid at bottom of scene) --- */
+.title-banner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.2rem 1rem;
+  background: linear-gradient(to top, rgba(26, 0, 16, 0.92) 0%, rgba(26, 0, 16, 0.6) 60%, transparent 100%);
+  text-align: center;
+}
+
+.title-banner-text {
+  font-family: var(--font-pixel);
+  font-size: clamp(1.2rem, 4vw, 2.5rem);
+  color: #FF1493;
+  text-shadow:
+    3px 3px 0 rgba(0, 0, 0, 1),
+    0 0 20px rgba(255, 20, 147, 0.4);
+  letter-spacing: 0.08em;
+}
+
+/* --- Story Zone (RPG dialog) --- */
+.story-zone {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 2.5rem;
+}
+
+/* --- RPG Dialog Box --- */
+.rpg-dialog {
+  position: relative;
+  background: linear-gradient(135deg, rgba(26, 0, 16, 0.95), rgba(40, 0, 30, 0.95));
+  border: 3px solid #FF1493;
+  border-radius: 4px;
+  padding: 2rem 1.8rem;
+  box-shadow:
+    0 0 0 1px #FFD70050,
+    inset 0 0 30px rgba(255, 20, 147, 0.08),
+    0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* --- RPG Corner Hearts --- */
+.rpg-corner {
+  position: absolute;
+  font-size: 0.9rem;
+  color: #FFD700;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.rpg-corner-tl {
+  top: 6px;
+  left: 8px;
+}
+
+.rpg-corner-tr {
+  top: 6px;
+  right: 8px;
+}
+
+.rpg-corner-bl {
+  bottom: 6px;
+  left: 8px;
+}
+
+.rpg-corner-br {
+  bottom: 6px;
+  right: 8px;
+}
+
+/* --- RPG Subtitle --- */
+.rpg-subtitle {
+  font-family: var(--font-pixel);
+  font-size: clamp(0.55rem, 1.8vw, 0.8rem);
+  color: #FFD700;
+  margin-bottom: 0.8rem;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.9);
+  letter-spacing: 0.05em;
+}
+
+/* --- RPG Body Text --- */
+.rpg-body {
+  font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+  color: #FFF0F5;
+  line-height: 1.7;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.rpg-body p {
+  margin-bottom: 0.5rem;
+}
+
+/* --- Inline Polaroid Inside Dialog --- */
+.polaroid-inline {
+  display: block;
+  width: fit-content;
+  max-width: 260px;
+  margin: 1.5rem auto 0;
+  background: #fff;
+  padding: 6px 6px 28px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.polaroid-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.polaroid-caption {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #555;
+  margin-top: 6px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ==========================================================
+   HORIZONTAL GALLERY (scroll-linked)
+   ========================================================== */
+
+.gallery-card {
+  flex-shrink: 0;
+  width: 280px;
+  background: #fff;
+  padding: 6px 6px 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  transition: transform 0.25s ease;
+}
+
+.gallery-card:hover {
+  transform: scale(1.03);
+}
+
+.gallery-card img {
+  display: block;
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+.gallery-card-caption {
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #555;
+  margin-top: 8px;
+}
+
+@media (min-width: 768px) {
+  .gallery-card {
+    width: 360px;
+  }
+
+  .gallery-card img {
+    height: 340px;
+  }
+}
